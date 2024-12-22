@@ -12,7 +12,7 @@ startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <RemixBrowser />
+     <div>Hello World!!</div>
     </StrictMode>
   );
 });
