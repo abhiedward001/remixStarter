@@ -16,7 +16,7 @@ import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { jsx } from "react/jsx-runtime";
 var ABORT_DELAY = 5e3;
-function handleRequest(request, responseStatusCode, responseHeaders, remixContext, loadContext) {
+function handleRequest(request, responseStatusCode, responseHeaders, remixContext) {
   return isbot(request.headers.get("user-agent") || "") ? handleBotRequest(
     request,
     responseStatusCode,
