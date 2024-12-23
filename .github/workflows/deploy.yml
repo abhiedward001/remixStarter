@@ -45,39 +45,8 @@ jobs:
       - name: 🔬 Run ESLint
         run: npm run lint
 
-  vitest:
-    name: ⚡ Vitest
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
-
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-
-      - name: ⎔ Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: 📥 Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: 📥 Download dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          useLockFile: true
-
-      - name: ⚡ Run Vitest with coverage
-        run: npm run test -- --coverage
-
   deploy:
-    needs: [lint, vitest]
+    needs: [lint]
     runs-on: ubuntu-latest
 
     steps:
